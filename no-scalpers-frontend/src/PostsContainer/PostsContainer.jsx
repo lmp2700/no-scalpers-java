@@ -25,6 +25,7 @@ class Posts extends Component {
 
     // Component Did Mount Check
       componentDidMount(){
+        console.log(this.props.id, '<----this is userId ≠≠≠≠≠≠≠')
         this.getPosts().then((posts) => {
           this.setState({posts: posts})
           console.log(posts, ' componentdidmount posts container')
@@ -107,11 +108,12 @@ class Posts extends Component {
         }
     render() {
 
+
         return (
             <Container className="post-container">
                     <Row>
                         <Col> 
-                            <CreatePost addPost = {this.addPost} />
+                            <CreatePost addPost = {this.addPost} id={this.props.id} />
                         </Col>
                     </Row>
                     <Row>

@@ -56,10 +56,6 @@ public class PostController {
         return postRepository.findAll();
     }
 
-//    @GetMapping("/posts")
-//    public String getPosts(){
-//        return "Your mom";
-//    }
 
 //    @GetMapping("/posts/{id}")
 //    public Post getPost(@PathVariable Long id) throws Exception {

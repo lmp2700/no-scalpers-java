@@ -8,8 +8,15 @@ class CreatePost extends Component {
 
         this.state = {
             title: '',
-            comment: ''
+            comment: '',
         }
+    }
+
+    componentDidMount(){
+        this.setState({
+            user: this.props.id
+        })
+        console.log(this.props.id, '<----this is userId ≠≠≠≠≠≠≠')
     }
 
     handleInput = (e) => {

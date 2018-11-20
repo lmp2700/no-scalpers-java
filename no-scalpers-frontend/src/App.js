@@ -74,11 +74,12 @@ class App extends Component {
     });
     const createdUserJSON = await createdUser.json();
     console.log(createdUserJSON, ' this is response')
-    
+
       this.setState({
         loggedIn: true,
         username: createdUserJSON.username,
-        password: createdUserJSON.password
+        password: createdUserJSON.password,
+        user_id: createdUserJSON.id
       })
       console.log(this.state, '<----user is loggedin')
   }catch(err){
@@ -105,7 +106,7 @@ class App extends Component {
             <Container>
               <Row>
                 <Col xs="6">
-                  <Posts /> 
+                  <Posts id={this.state.user_id}/> 
                 </Col>                  
                 <Col xs="6">
                   <EventContainer />

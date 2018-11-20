@@ -1,5 +1,7 @@
 package visageBook;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +16,11 @@ public class Post {
     private String comment;
 
     @ManyToOne
+    @JoinColumn(
+            name = "user_id",
+            nullable = false
+    )
+    @JsonIgnore
     private User user;
 
     public Long getId() {
