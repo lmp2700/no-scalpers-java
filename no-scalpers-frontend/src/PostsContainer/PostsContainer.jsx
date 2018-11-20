@@ -17,7 +17,7 @@ class Posts extends Component {
     }
     //get Posts from server
     getPosts = async () => {
-        const posts = await fetch('http://localhost:9000/posts');
+        const posts = await fetch('http://localhost:8080/posts');
         const postsJSON = await posts.json();
         console.log(postsJSON, ' JSON posts')
         return postsJSON
@@ -25,10 +25,12 @@ class Posts extends Component {
 
     // Component Did Mount Check
       componentDidMount(){
-        console.log(this.props.id, '<----this is userId ≠≠≠≠≠≠≠')
+        // console.log(this.props.id, '<----this is userId ≠≠≠≠≠≠≠')
+        console.log("Hey babycakes")
         this.getPosts().then((posts) => {
-          this.setState({posts: posts})
-          console.log(posts, ' componentdidmount posts container')
+            this.setState({posts: posts})
+            console.log(posts, ' componentdidmount posts container')
+        console.log("Hey babycakes 222")
         }).catch((err) => {
           console.log(err);
         })
@@ -81,7 +83,7 @@ class Posts extends Component {
     submitEdit = async (postToEdit) => {
         console.log(postToEdit)
             try {
-                const editedPost = await fetch ('http://localhost:9000/posts/' + postToEdit._id, {
+                const editedPost = await fetch ('http://localhost:8080/posts/' + postToEdit._id, {
                     method: 'PUT', 
                     body: JSON.stringify({
                         title: postToEdit.title,
