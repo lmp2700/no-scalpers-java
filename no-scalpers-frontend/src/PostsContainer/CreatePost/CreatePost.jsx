@@ -13,6 +13,7 @@ class CreatePost extends Component {
     }
 
     handleInput = (e) => {
+        e.preventDefault();
         this.setState({
             [e.currentTarget.name]: e.currentTarget.value
         })

@@ -9,42 +9,35 @@ import './PostContainer.css';
 class Posts extends Component {
     constructor () {
         super();
-
         this.state = {
             posts: [],
-            
+            username: '',
+            post: ''
         }
     }
-
     //get Posts from server
     getPosts = async () => {
         const posts = await fetch('http://localhost:9000/posts');
         const postsJSON = await posts.json();
+        console.log(postsJSON, ' JSON posts')
         return postsJSON
       }
 
     // Component Did Mount Check
       componentDidMount(){
         this.getPosts().then((posts) => {
-          this.setState({posts: posts.data})
-
+          this.setState({posts: posts})
+          console.log(posts, ' componentdidmount posts container')
         }).catch((err) => {
           console.log(err);
         })
       }
 
-
-  
     // Add a Post function to be passed down to child
-
     addPost = async (post, e) => {
-
         e.preventDefault();
         console.log(post);
-
         try {
-
-
               const createdPost = await fetch('http://localhost:9000/posts/', {
               method: 'POST',
               body: JSON.stringify(post),
@@ -52,22 +45,16 @@ class Posts extends Component {
                 'Content-Type': 'application/json'
               }
             });
-      
             const parsedPost = await createdPost.json();
             console.log(parsedPost)
-
             if(parsedPost.status === 200){
                 this.setState({
                     posts: [...this.state.posts, parsedPost.data]
                 })
             }
-        
-
-          
         } catch (err) {
 
         }
-
     }
 
 
@@ -78,18 +65,11 @@ class Posts extends Component {
             const deletedPost = await fetch('http://localhost:9000/posts/' + id, {
                 method: 'DELETE'
             });
-
             const deletedPostJSON = await deletedPost.json();
-
             this.setState({posts: this.state.posts.filter((post)=> post._id !== id)})
-
             console.log(deletedPostJSON)
-
         } catch (err) {
-
         }
-        
-
     }
 
 
@@ -103,38 +83,28 @@ class Posts extends Component {
                 const editedPost = await fetch ('http://localhost:9000/posts/' + postToEdit._id, {
                     method: 'PUT', 
                     body: JSON.stringify({
-
                         title: postToEdit.title,
                         commentBody: postToEdit.commentBody
-
                     }),
                     headers: {
                         'Content-Type': 'application/json'
-
                     }
                 })
-            
                 const editedPostJSON = await editedPost.json();
-        
                 const newPostArrayWithEdited = this.state.posts.map((post) => {
-        
                 if(post._id === editedPostJSON.data._id){
                     post = editedPostJSON.data
-                }
-        
+                    }
                 return post
                 });
                 this.setState({
                     posts: newPostArrayWithEdited,
                     modal: false
                         })
-
             } catch (err) {
                 return err
             }    
         }
-    
-    
     render() {
 
         return (

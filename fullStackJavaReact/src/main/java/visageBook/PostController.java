@@ -25,17 +25,11 @@ public class PostController {
         return "hey bae";
     }
 
-
     @GetMapping("/users/{userId}/posts")
     public Iterable<Post> getPostsByUser(@PathVariable Long userId){
         Optional<User> userOptional = userRepository.findById(userId);
         User user = userOptional.get();
         return postRepository.findAllByUser(user);
-    }
-
-    @GetMapping("/posts")
-    public Iterable<Post> getPosts(){
-        return postRepository.findAll();
     }
 
     @PostMapping("/posts")
@@ -47,6 +41,11 @@ public class PostController {
         User author = userRepository.findByUsername(currentUsername);
         post.setUser(author);
         return postRepository.save(post);
+    }
+
+    @GetMapping("/posts")
+    public Iterable<Post> getPosts(){
+        return postRepository.findAll();
     }
 
     @GetMapping("/posts/{id}")
