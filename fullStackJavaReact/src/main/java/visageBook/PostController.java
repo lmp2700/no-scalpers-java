@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RestController
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class PostController {
 
     @Autowired

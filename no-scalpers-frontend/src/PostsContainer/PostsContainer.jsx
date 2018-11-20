@@ -46,6 +46,7 @@ class Posts extends Component {
                 }
             });
             console.log("DADDY")
+            console.log(createdPost);
             const parsedPost = await createdPost.json();
             console.log(parsedPost)
             this.setState({
