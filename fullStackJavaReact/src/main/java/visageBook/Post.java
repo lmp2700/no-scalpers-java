@@ -9,7 +9,9 @@ public class Post {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    private String text;
+    private String title;
+
+    private String comment;
 
     @ManyToOne
     private User user;
@@ -22,19 +24,27 @@ public class Post {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

@@ -38,20 +38,19 @@ class Posts extends Component {
         e.preventDefault();
         console.log(post);
         try {
-              const createdPost = await fetch('http://localhost:9000/posts/', {
-              method: 'POST',
-              body: JSON.stringify(post),
-              headers: {
-                'Content-Type': 'application/json'
-              }
+            const createdPost = await fetch('http://localhost:8080/posts', {
+                method: 'POST',
+                body: JSON.stringify(post),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
+            console.log("DADDY")
             const parsedPost = await createdPost.json();
             console.log(parsedPost)
-            if(parsedPost.status === 200){
-                this.setState({
-                    posts: [...this.state.posts, parsedPost.data]
-                })
-            }
+            this.setState({
+                posts: [...this.state.posts, parsedPost]
+            })
         } catch (err) {
 
         }
@@ -62,7 +61,7 @@ class Posts extends Component {
     deletePost = async (id) => {
 
         try {
-            const deletedPost = await fetch('http://localhost:9000/posts/' + id, {
+            const deletedPost = await fetch('http://localhost:8080/posts/' + id, {
                 method: 'DELETE'
             });
             const deletedPostJSON = await deletedPost.json();
