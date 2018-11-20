@@ -1,3 +1,3 @@
 target/
 .idea/
-fullStackJavaReact.iml
+src/main/resources/application.properties

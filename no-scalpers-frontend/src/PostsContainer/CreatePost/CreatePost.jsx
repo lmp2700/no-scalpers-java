@@ -8,7 +8,7 @@ class CreatePost extends Component {
 
         this.state = {
             title: '',
-            commentBody: ''
+            comment: ''
         }
     }
 
@@ -38,8 +38,8 @@ class CreatePost extends Component {
                             <Row>
                                 <Col>
                                     <FormGroup>
-                                        <Label for="commentBody">Comment</Label>
-                                        <Input type="textarea" value = {this.state.commentBody} onChange={this.handleInput} name="commentBody" id="commentBody" />
+                                        <Label for="comment">Comment</Label>
+                                        <Input type="textarea" value = {this.state.comment} onChange={this.handleInput} name="comment" id="comment" />
                                     </FormGroup>
                                 </Col>
                             </Row>            
